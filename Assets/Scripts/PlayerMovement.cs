@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] float moveSpeed;
+    [SerializeField] float sensY;
 
     [SerializeField] float groundDrag;
 
@@ -19,8 +21,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask whatIsGround;
     bool grounded;
 
-    [SerializeField] Transform Orientation;
-
 
     Vector3 moveDirection;
 
@@ -35,11 +35,10 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 1f, whatIsGround);
-        Debug.Log(grounded);
         MyInput();
         SpeedControl();
 
-        if(grounded)
+        if (grounded)
         {
             rb.linearDamping = groundDrag;
         }
@@ -48,7 +47,17 @@ public class PlayerMovement : MonoBehaviour
             rb.linearDamping = 0f;
         }
 
+        float yRotation = 0;
+        //Debug.Log(Input.GetAxisRaw("Mouse X"));
+        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensY;
+
+        yRotation += mouseX;
+
+
+        transform.rotation = Quaternion.Euler(0, yRotation, 0);
+
     }
+
     private void FixedUpdate()
     {
         MovePlayer();
@@ -74,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        moveDirection = Orientation.forward * verticalInput + Orientation.right * horizontalInput;
+        moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
 
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
     }
