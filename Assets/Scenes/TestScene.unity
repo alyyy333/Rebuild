@@ -152,7 +152,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1730316941}
-  m_Father: {fileID: 5755146925830390585}
+  m_Father: {fileID: 2295222348837760824}
   m_LocalEulerAnglesHint: {x: -20, y: 0, z: 0}
 --- !u!120 &181182519
 LineRenderer:
@@ -795,7 +795,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 739095262}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.48562506, y: -0, z: -0, w: 0.8741672}
+  m_LocalRotation: {x: 0.4856251, y: -0, z: -0, w: 0.8741672}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1169,6 +1169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1030600665}
   - component: {fileID: 1030600664}
+  - component: {fileID: 1030600666}
   m_Layer: 0
   m_Name: FreeLook Camera
   m_TagString: Untagged
@@ -1299,6 +1300,36 @@ Transform:
   - {fileID: 739095264}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1030600666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030600663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 192
+  m_IgnoreTag: Player
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_MinimumDistanceFromTarget: 0.1
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0.1
+  m_Strategy: 0
+  m_MaximumEffort: 4
+  m_SmoothingTime: 0
+  m_Damping: 0
+  m_DampingWhenOccluded: 0
+  m_OptimalTargetDistance: 0
 --- !u!1 &1244924499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,7 +2013,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 181182518}
   m_Father: {fileID: 5755146925830390585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3300562714549480721
@@ -2052,7 +2084,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 181182518}
   - {fileID: 2295222348837760824}
   - {fileID: 566533498}
   m_Father: {fileID: 0}
@@ -2071,7 +2102,7 @@ GameObject:
   - component: {fileID: 6934977207985590775}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
