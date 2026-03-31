@@ -3,25 +3,16 @@ using UnityEngine;
 public class PlayerCam : MonoBehaviour
 {
 
-    [SerializeField] float sensY;
+    [Header("Refrences")]
+    public Transform orientation;
+    public Transform player;
+    public Transform playerObj;
+    public Rigidbody rb;
 
-    [SerializeField] Transform orientation;
+    public float rotationSpeed;
 
-
-
-    float yRotation;
-
-    void Update()
+    private void Update()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensY;
-
-        yRotation += mouseX;
-
-
-        transform.rotation = Quaternion.Euler(0, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-
-
+         
     }
-
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float jumpForce;
     [SerializeField] float jumpCooldown;
+
+    [SerializeField] Transform orientation;
 
     float horizontalInput;
     float verticalInput;
@@ -54,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         yRotation += mouseX;
 
 
-        transform.rotation = Quaternion.Euler(0, yRotation, 0);
+        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
 
     }
 
@@ -83,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
     }
