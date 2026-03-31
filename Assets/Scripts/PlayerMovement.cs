@@ -1,28 +1,26 @@
- using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] float moveSpeed;
-    [SerializeField] float sensY;
 
     [SerializeField] float groundDrag;
 
     [SerializeField] float jumpForce;
     [SerializeField] float jumpCooldown;
 
-    [SerializeField] Transform orientation;
-
     float horizontalInput;
     float verticalInput;
-    bool readyToJump = true;
 
     [Header("Ground Check")]
     [SerializeField] float playerHeight;
     [SerializeField] LayerMask whatIsGround;
-    bool grounded;
 
+    bool grounded;
+    bool readyToJump = true;
+
+    [SerializeField] Transform orientation;
 
     Vector3 moveDirection;
 
@@ -40,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         MyInput();
         SpeedControl();
 
-        if (grounded)
+        if(grounded)
         {
             rb.linearDamping = groundDrag;
         }
@@ -49,17 +47,7 @@ public class PlayerMovement : MonoBehaviour
             rb.linearDamping = 0f;
         }
 
-        float yRotation = 0;
-        //Debug.Log(Input.GetAxisRaw("Mouse X"));
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensY;
-
-        yRotation += mouseX;
-
-
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-
     }
-
     private void FixedUpdate()
     {
         MovePlayer();
@@ -114,5 +102,15 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
     }
 
-
+    /*private void Shoot()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            Vector3 spawnPos = orientation.position + orientation.right + orientation.forward;
+            Quaternion spawnRot = Quaternion.LookRotation(orientation.transform.forward);
+            Instantiate(projectile, spawnPos, spawnRot);
+        }
+    }
+    */
+    
 }
