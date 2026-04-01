@@ -2,12 +2,21 @@ using UnityEngine;
 
 public class GrabableObject : MonoBehaviour
 {
-
-    Transform dropSpot;
+    Transform dropSpotTransform;
 
     void Start()
     {
-        GameObject collectionBox = GameObject.Find("PieceCollectionBox");
+        GameObject dropSpot = GameObject.Find("DropSpot");
+        if (dropSpot == null)
+        {
+            Debug.Log("can't find DropSpot");
+        }
+        else
+        {
+            Debug.Log("gameObject: " + dropSpot.name);
+        }
+
+        dropSpotTransform = dropSpot.transform;
 
     }
 
@@ -17,7 +26,7 @@ public class GrabableObject : MonoBehaviour
         {
             Debug.Log("dropped");
 
-            transform.position = dropSpot.position;
+            transform.position = dropSpotTransform.position;
         }
 
     }
