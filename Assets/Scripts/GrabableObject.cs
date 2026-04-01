@@ -2,23 +2,27 @@ using UnityEngine;
 
 public class GrabableObject : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    Transform dropSpot;
+
     void Start()
     {
-        
+        GameObject collectionBox = GameObject.Find("PieceCollectionBox");
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("vacuum"))
         {
+            Debug.Log("dropped");
 
+            transform.position = dropSpot.position;
         }
 
     }
 
 
-    // Update is called once per frame
     void Update()
     {
         

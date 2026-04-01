@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2564218244812946526}
   - component: {fileID: 921294151572744632}
   - component: {fileID: 4813552204882652273}
+  - component: {fileID: 2823551230365783051}
   m_Layer: 7
   m_Name: Grabby
   m_TagString: Untagged
@@ -136,3 +137,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2823551230365783051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6340287792345723307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e816ce21c64c540ae55c7b47508118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropSpot: {fileID: 0}
