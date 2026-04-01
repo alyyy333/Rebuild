@@ -27,6 +27,8 @@ public class GrabableObject : MonoBehaviour
             Debug.Log("dropped");
 
             transform.position = dropSpotTransform.position;
+
+            ScoreCounter.AddScore();
         }
 
     }
