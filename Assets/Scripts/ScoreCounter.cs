@@ -1,9 +1,13 @@
 using UnityEngine;
+using TMPro;
 
 public class ScoreCounter : MonoBehaviour
 {
-    public static int score = 0;
-    
+    public int score = 0;
+    int maxPieces = 10;
+    [SerializeField] TextMeshProUGUI piecesFoundText;
+
+
     void Start()
     {
         
@@ -15,9 +19,9 @@ public class ScoreCounter : MonoBehaviour
         
     }
 
-    public static void AddScore()
+    public void AddScore()
     {
         score += 1;
-        Debug.Log(score);
+        piecesFoundText.text = "Pieces found: " + score + "/" + maxPieces;
     }
 }

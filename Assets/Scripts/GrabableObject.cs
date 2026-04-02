@@ -3,6 +3,7 @@ using UnityEngine;
 public class GrabableObject : MonoBehaviour
 {
     Transform dropSpotTransform;
+    ScoreCounter scoreCounter;
 
     void Start()
     {
@@ -18,6 +19,15 @@ public class GrabableObject : MonoBehaviour
 
         dropSpotTransform = dropSpot.transform;
 
+        scoreCounter = FindFirstObjectByType<ScoreCounter>();
+        if (scoreCounter == null)
+        {
+            Debug.Log("can't find scoreCounter (script)");
+        }
+        else
+        {
+            Debug.Log("scoreCounter: " + scoreCounter.name);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,7 +38,7 @@ public class GrabableObject : MonoBehaviour
 
             transform.position = dropSpotTransform.position;
 
-            ScoreCounter.AddScore();
+            scoreCounter.AddScore();
         }
 
     }
