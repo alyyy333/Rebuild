@@ -13,8 +13,8 @@ public class Grabber : MonoBehaviour
     public float maxGrabDistance;
     public float grabDelay;
     float ropeLength;
-
-    private Vector3 grabPoint;
+    SpringJoint joint;
+    Transform grabbedObject;
 
     [Header("Cooldown")]
     public float grabCoolDown;
@@ -48,6 +48,10 @@ public class Grabber : MonoBehaviour
         if(grabbing)
         {
             lr.SetPosition(0, shootPoint.position); 
+            if (grabbedObject != null)
+            {
+                lr.SetPosition(1, grabbedObject.position);
+            }
         }
     }
     private void StartGrab()
@@ -63,25 +67,24 @@ public class Grabber : MonoBehaviour
 
         if (Physics.Raycast(cam.position, cam.forward, out hit, maxGrabDistance, whatIsGrab))
         {
-            grabPoint = hit.point;
-            Invoke(nameof(ExecuteGrab), grabDelay);
-            Attach();
+            grabbedObject = hit.transform;
+            Attach(hit.rigidbody);
         }
         else
         {
-            grabPoint = cam.position + cam.forward * maxGrabDistance;
             Invoke(nameof(StopGrab), grabDelay);
+            if(joint != null)
+            {
+                Destroy(joint);
+                joint = null;
+            }
 
         }
 
         lr.enabled = true;
-        lr.SetPosition(1, grabPoint);
     }
 
-    private void ExecuteGrab()
-    {
-
-    }
+  
 
     private void StopGrab()
     {
@@ -94,12 +97,14 @@ public class Grabber : MonoBehaviour
 
     private void Attach(Rigidbody target)
     {
-        SpringJoint joint = gameObject.AddComponent<SpringJoint>();
+        joint = gameObject.AddComponent<SpringJoint>();
         joint.connectedBody = target;
         ropeLength = Vector3.Distance(transform.position, target.position);
-        joint.maxDistance = ropeLength;
+        joint.maxDistance = 1f;
         joint.minDistance = ropeLength;
         joint.spring = 100f; //stiffness
         joint.damper = 5f; //smoothness
     }
+
+
 }
