@@ -12,6 +12,7 @@ public class Grabber : MonoBehaviour
     [Header("Variables")]
     public float maxGrabDistance;
     public float grabDelay;
+    float ropeLength;
 
     private Vector3 grabPoint;
 
@@ -64,6 +65,7 @@ public class Grabber : MonoBehaviour
         {
             grabPoint = hit.point;
             Invoke(nameof(ExecuteGrab), grabDelay);
+            Attach();
         }
         else
         {
@@ -88,5 +90,16 @@ public class Grabber : MonoBehaviour
         grabCoolDownTimer = grabCoolDown;
 
         lr.enabled = false;
+    }
+
+    private void Attach(Rigidbody target)
+    {
+        SpringJoint joint = gameObject.AddComponent<SpringJoint>();
+        joint.connectedBody = target;
+        ropeLength = Vector3.Distance(transform.position, target.position);
+        joint.maxDistance = ropeLength;
+        joint.minDistance = ropeLength;
+        joint.spring = 100f; //stiffness
+        joint.damper = 5f; //smoothness
     }
 }
