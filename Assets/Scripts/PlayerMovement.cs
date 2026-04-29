@@ -102,15 +102,5 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
     }
 
-    /*private void Shoot()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            Vector3 spawnPos = orientation.position + orientation.right + orientation.forward;
-            Quaternion spawnRot = Quaternion.LookRotation(orientation.transform.forward);
-            Instantiate(projectile, spawnPos, spawnRot);
-        }
-    }
-    */
     
 }
